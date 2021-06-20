@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import TBody from '../Style/TableBody.css';
-
 
 class TableBody extends Component {
   render() {

@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import TableBody from './TableBody';
-import TableHead from './TableHead';
+import TableBody from './TableBody.js';
+import TableHead from './TableHead.js';
+import '../Style/Table.css';
 
 class Note extends Component {
   render() {
     return (
       <React.Fragment>
-        <table>
-          <tHead>
+        <table>  
             <TableHead />
-          </tHead>
-          <tBody>
             <TableBody />
-          </tBody>
         </table>
       </React.Fragment>
     );

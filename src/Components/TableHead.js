@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import THead from '../Style/TableHead.css';
 
 class TableHead extends Component {
   render() {
