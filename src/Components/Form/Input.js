@@ -1,7 +1,7 @@
 import React from 'react';
 import {Form} from 'react-bootstrap';
 
-const  Input = ({email, name, type, label, handler, isCheckbox, value}) => {
+const  Input = ({name, type, label, handler, isCheckbox, value}) => {
     if(isCheckbox){
       return (
         <Form.Group controlId="formBasicCheckbox">
