@@ -1,1 +1,37 @@
+import React from 'react';
+import {Form} from 'react-bootstrap';
 
+const  Input = ({email, name, type, label, handler, isCheckbox, value}) => {
+    if(isCheckbox){
+      return (
+        <Form.Group controlId="formBasicCheckbox">
+          <Form.Check 
+            onChange={handler} 
+            type={type} 
+            name = {name}
+            checked = {value}
+            label= {label}
+          />
+        </Form.Group>
+      );
+    }else{
+      return (
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>
+            {label}
+          </Form.Label>
+          <Form.Control 
+            onChange={handler} 
+            type={type}
+            name={name}
+            value={value}
+            placeholder={label}
+            
+         />
+        </Form.Group>
+      );
+    }
+
+}
+
+export default Input;
