@@ -26,12 +26,10 @@ const  Input = ({name, type, label, handler, isCheckbox, value}) => {
             name={name}
             value={value}
             placeholder={label}
-            
-         />
+          />
         </Form.Group>
       );
     }
-
 }
 
 export default Input;
