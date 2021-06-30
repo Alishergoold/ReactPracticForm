@@ -2,7 +2,6 @@ import React from 'react';
 import { Form } from "react-bootstrap";
 
 const SignUpComponent = ({ handler, type, name, value, placeholder, error }) => {
-  console.log(error);
   return (
     <>
     <Form.Group className="mb-3" controlId="formGroupEmail">
@@ -15,7 +14,7 @@ const SignUpComponent = ({ handler, type, name, value, placeholder, error }) => 
         placeholder={placeholder}
       />
     </Form.Group>
-    {error && <p>Error</p>}
+    {error && <p>{error}</p>}
     </>
   );
 };
