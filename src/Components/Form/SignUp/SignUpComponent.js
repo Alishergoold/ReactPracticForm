@@ -14,7 +14,7 @@ const SignUpComponent = ({ handler, type, name, value, placeholder, error }) => 
         placeholder={placeholder}
       />
     </Form.Group>
-    {error && <p>{error}</p>}
+    {error && <p style={{color:'red'}}>{error}</p>}
     </>
   );
 };

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Joi from "joi-browser";
 import { Button, Form } from "react-bootstrap";
 import SignUpComponent from "./SignUpComponent";
 
@@ -17,6 +18,20 @@ class Signup extends Component {
       password: ""
     }
   };
+
+  schema = ({
+    email: Joi.string().required().label("Email"),
+    password: Joi.string().required().label("Password"),
+  });
+
+
+  validateProperty = ({ name, value }) => {
+    const obj = { [name]: value };
+    const schema = { [name]: this.schema[name] };
+    const msg = Joi.validate(obj, schema); 
+    console.log(msg, "message");
+  };
+
 
   inputsHandler = e => {
     const {name, value} = e.target;
@@ -47,6 +62,7 @@ class Signup extends Component {
   render() {
     const {name, phoneNumber, adress, password, errors} = this.state;
     console.log(this.state);
+
     return (
       <Form onSubmit={this.submitsHandler}>
 
