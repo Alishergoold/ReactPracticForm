@@ -37,13 +37,9 @@ class SignIn extends Component {
     else delete errors[name];
 
     console.log("input errors", errors);
-    //console.log(e);
-    //const{user} = this.state;
-    //this.setState({ user: {...user, [name]: value } });
     this.setState((prevState) => ({
       ...prevState,
       user: { ...prevState.user, [name]: value },
-    //console.log(name, value, this.state);
     }));
   }
   checkBoxHandler = (e) => {
