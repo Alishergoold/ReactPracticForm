@@ -10,22 +10,25 @@ class SignIn extends Component {
       password: "",
       isAgree: null,
     },
-    errors: {
+    error: {
       name: "",
       password: "",
     },
   };
 
-  schema = {
+  schema = ({
     email: Joi.string().required().label("Email"),
     password: Joi.string().required().label("Password"),
-  }
+  })
 
   validateProperty = ({ name, value }) => {
     const obj = { [name]: value };
-    const schema = { [name]: this.schema[name] }
-    const msg = Joi.validate(obj, schema)
-    console.log(msg, "message");
+    const schema = { [name]: this.schema[name] };
+    const {error} = Joi.validate(obj, schema);
+
+    return error ? error.details[0].message : null;
+
+    //console.log(error, "message");
   };
 
   inputHandler = ({target}) => {
@@ -36,12 +39,15 @@ class SignIn extends Component {
     if (msg) errors[name] = msg;
     else delete errors[name];
 
-    console.log("input errors", errors);
     this.setState((prevState) => ({
       ...prevState,
-      user: { ...prevState.user, [name]: value },
+      user: { ...prevState.user, [name]: value, },
+      errors,
     }));
+
+    console.log(errors, "eeeeeeeeeeeeeerrrrrrrrrrrrrrr");
   }
+
   checkBoxHandler = (e) => {
     const { checked, name } = e.target;
     this.setState((prevState) => ({
@@ -50,13 +56,31 @@ class SignIn extends Component {
     }));
   };
 
+  validate = () => {
+    const {error} = Joi.validate(this.state.user, this.schema, {abortEarly:false});
+    if(!error) return null;
+
+    const errors = {}
+    for (let item of errors.details){
+      errors[item.path[0]] = item.message 
+    }      
+    
+    console.log(errors.details);
+    return errors
+  }
+
   submitHandler = (e) => {
     e.preventDefault();
+    const errors = this.validate();
+    this.setState({errors: errors || {} });
+
+    if(errors)return;
+
     console.log("form submitted", this.state.user);
   };
   
   render() {
-    const { email, password, isAgree } = this.state;
+    const { email, password, isAgree, errors } = this.state;
     return (
       <Form onSubmit={this.submitHandler}>
         <Input
@@ -65,6 +89,7 @@ class SignIn extends Component {
           handler={this.inputHandler}
           type="email"
           label="Enter you email"
+          error={errors}
         />
         <Input
           name="password"
