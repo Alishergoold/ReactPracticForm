@@ -31,3 +31,23 @@ label {
 .photo button {
   margin-bottom: 7px;
 }
+
+/* navbar============== */
+.navbar {
+  background-color: red;
+  padding: 5px 20px;
+  font-weight: bold;
+}
+.link {
+  color: #000;
+  text-decoration: none;
+  padding: 5px 20px;
+}
+.link:hover {
+  transition: 0.5s;
+  padding: 5px 20px;
+  background-color: blue;
+  color: #ccc;
+  text-decoration: none;
+  border-radius: 5px;
+}
